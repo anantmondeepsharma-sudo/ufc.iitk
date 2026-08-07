@@ -47,6 +47,11 @@
 
     <div class="page-light"></div>
 
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    </div>
+
     <main>
 
         <!-- =========================================
@@ -98,6 +103,8 @@
 
                     </ul>
 
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">🌙</button>
+
                     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
                         <span></span>
                         <span></span>
@@ -137,11 +144,12 @@
 
                         </h1>
 
-                        <div class="flying-disc">
+                        <!-- <div class="flying-disc">
 
-                            🥏
+                            <img src="assets/images/disc.png"
+                                alt="Flying Disc">
 
-                        </div>
+                        </div> -->
 
                         <p class="hero-description">
 
@@ -621,6 +629,23 @@
 
                     </section>
 
+                    <section id="instagram" class="instagram">
+                        <div class="container">
+                            <p class="section-label">FOLLOW US</p>
+                            <h2 class="section-title">ON THE<br>GRAM.</h2>
+                            <p class="section-description">
+                                Catch our latest moments, tournaments and highlights, straight from Instagram.
+                            </p>
+                            <div class="instagram-embed">
+                                <!-- Paste your SnapWidget / Elfsight iframe embed code here -->
+                            </div>
+                            <a href="https://www.instagram.com/ultimatefrisbee_iitk?igsh=MWVzbXpwZGllMzEzMw=="
+                            target="_blank" rel="noopener noreferrer" class="secondary-btn instagram-link">
+                                Follow @ultimatefrisbee_iitk
+                            </a>
+                        </div>
+                    </section>
+
                     <!-- =========================================
                                 THE PEOPLE BEHIND THE SPIRIT
                         ========================================= -->
@@ -998,7 +1023,9 @@
 
                                     </p>
 
-                                    <div class="stories-grid">
+                                    <div class="stories-carousel">
+
+                                        <div class="stories-track" id="storiesTrack">
 
                                         <div class="story-card">
 
@@ -1068,6 +1095,14 @@
 
                                         </div>
 
+                                    </div>
+
+                                    </div>
+
+                                    <div class="carousel-nav">
+                                        <button class="carousel-btn" id="storiesPrev" aria-label="Previous testimonial">&#8592;</button>
+                                        <div class="carousel-dots" id="storiesDots"></div>
+                                        <button class="carousel-btn" id="storiesNext" aria-label="Next testimonial">&#8594;</button>
                                     </div>
 
                                 </div>
