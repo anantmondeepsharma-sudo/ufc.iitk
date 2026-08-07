@@ -112,3 +112,111 @@ if (navbar) {
     });
 
 }
+
+const themeToggle = document.getElementById("themeToggle");
+const rootEl = document.documentElement;
+
+function applyTheme(theme){
+    if (theme === "light") {
+        rootEl.setAttribute("data-theme", "light");
+        if (themeToggle) themeToggle.textContent = "☀️";
+    } else {
+        rootEl.removeAttribute("data-theme");
+        if (themeToggle) themeToggle.textContent = "🌙";
+    }
+    localStorage.setItem("theme", theme);
+}
+
+applyTheme(localStorage.getItem("theme") || "dark");
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const isLight = rootEl.getAttribute("data-theme") === "light";
+        applyTheme(isLight ? "dark" : "light");
+    });
+}
+
+const revealTargets = document.querySelectorAll(
+    ".section-title, .section-description, .feature-card, .season-card, " +
+    ".coordinator-card, .secretary-card, .story-card, .gallery-item"
+);
+
+revealTargets.forEach(el => el.classList.add("reveal"));
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+revealTargets.forEach(el => revealObserver.observe(el));
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+
+document.querySelectorAll(".gallery-item img").forEach(img => {
+    img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add("active");
+    });
+});
+
+function closeLightbox(){
+    lightbox.classList.remove("active");
+}
+
+if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+}
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+});
+
+const storiesTrack = document.getElementById("storiesTrack");
+
+if (storiesTrack) {
+    const slides = storiesTrack.querySelectorAll(".story-card");
+    const dotsWrap = document.getElementById("storiesDots");
+    const prevBtn = document.getElementById("storiesPrev");
+    const nextBtn = document.getElementById("storiesNext");
+    let current = 0;
+    let autoplay;
+
+    slides.forEach((_, i) => {
+        const dot = document.createElement("span");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goTo(i));
+        dotsWrap.appendChild(dot);
+    });
+
+    const dots = dotsWrap.querySelectorAll("span");
+
+    function goTo(index){
+        current = (index + slides.length) % slides.length;
+        storiesTrack.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach(d => d.classList.remove("active"));
+        dots[current].classList.add("active");
+    }
+
+    function startAutoplay(){
+        autoplay = setInterval(() => goTo(current + 1), 6000);
+    }
+
+    function resetAutoplay(){
+        clearInterval(autoplay);
+        startAutoplay();
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", () => { goTo(current - 1); resetAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener("click", () => { goTo(current + 1); resetAutoplay(); });
+
+    startAutoplay();
+}
