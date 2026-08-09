@@ -1498,7 +1498,7 @@ nav{
 
 .join-note span{
 
-    color:white;
+    color: var(--accent);
 
     font-weight:600;
 
