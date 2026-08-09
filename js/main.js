@@ -220,3 +220,71 @@ if (storiesTrack) {
 
     startAutoplay();
 }
+
+const galleryMoreBtn = document.getElementById("galleryMoreBtn");
+
+if (galleryMoreBtn) {
+    galleryMoreBtn.addEventListener("click", () => {
+        const extras = document.querySelectorAll(".gallery-extra");
+        const isShowing = extras[0]?.classList.contains("show");
+        extras.forEach(item => item.classList.toggle("show", !isShowing));
+        galleryMoreBtn.textContent = isShowing ? "View more" : "View less";
+    });
+}
+
+const detailModal = document.getElementById("detailModal");
+const detailModalImg = document.getElementById("detailModalImg");
+const detailModalTitle = document.getElementById("detailModalTitle");
+const detailModalSubtitle = document.getElementById("detailModalSubtitle");
+const detailModalBody = document.getElementById("detailModalBody");
+const detailModalMoreBtn = document.getElementById("detailModalMoreBtn");
+const detailModalMore = document.getElementById("detailModalMore");
+const detailModalClose = document.getElementById("detailModalClose");
+
+function openDetailModal({ img = "", title = "", subtitle = "", body = "", more = "" }){
+    detailModalImg.src = img;
+    detailModalTitle.textContent = title;
+    detailModalSubtitle.textContent = subtitle;
+    detailModalBody.textContent = body;
+    detailModalMore.textContent = more;
+    detailModalMore.classList.remove("show");
+    detailModalMoreBtn.textContent = "View more";
+    detailModal.classList.add("active");
+}
+
+function closeDetailModal(){ detailModal.classList.remove("active"); }
+
+if (detailModalClose) detailModalClose.addEventListener("click", closeDetailModal);
+if (detailModal) {
+    detailModal.addEventListener("click", (e) => { if (e.target === detailModal) closeDetailModal(); });
+}
+if (detailModalMoreBtn) {
+    detailModalMoreBtn.addEventListener("click", () => {
+        const isShown = detailModalMore.classList.toggle("show");
+        detailModalMoreBtn.textContent = isShown ? "View less" : "View more";
+    });
+}
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDetailModal(); });
+
+document.querySelectorAll(".secretary-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const name = card.dataset.name || card.textContent.trim();
+        const role = card.dataset.role || "Secretary";
+        const photo = card.dataset.photo || "assets/images/placeholder.jpg";
+        const bio = card.dataset.bio || "More about this secretary will be added soon.";
+        const more = card.dataset.more || "";
+        openDetailModal({ img: photo, title: name, subtitle: role, body: bio, more });
+    });
+});
+
+document.querySelectorAll(".season-card li").forEach(item => {
+    item.addEventListener("click", () => {
+        const monthEl = item.closest(".season-card")?.querySelector(".month");
+        const month = monthEl ? monthEl.textContent.trim() : "";
+        const title = item.dataset.title || item.textContent.trim();
+        const date = item.dataset.date || month;
+        const desc = item.dataset.desc || "Full details for this event will be added soon.";
+        const more = item.dataset.more || "";
+        openDetailModal({ img: "", title, subtitle: date, body: desc, more });
+    });
+});

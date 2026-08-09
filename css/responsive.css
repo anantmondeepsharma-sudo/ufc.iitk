@@ -53,9 +53,9 @@
         flex-direction:column;
         align-items:flex-start;
         gap:0;
-        background:rgba(15,15,15,.97);
+        background:var(--mobile-nav-bg);
         backdrop-filter:blur(18px);
-        border:1px solid rgba(255,255,255,.08);
+        border:1px solid var(--border);
         border-radius:18px;
         padding:10px 24px;
 
@@ -75,7 +75,7 @@
     .nav-links li{
         width:100%;
         padding:14px 0;
-        border-bottom:1px solid rgba(255,255,255,.06);
+        border-bottom:1px solid var(--border);
     }
 
     .nav-links li:last-child{

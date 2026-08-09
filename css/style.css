@@ -14,32 +14,55 @@
 ========================================================== */
 
 :root{
-
     --bg:#090909;
-
     --surface:#111111;
-
     --surface-2:#181818;
-
     --text:#F5F5F5;
-
     --text-light:#BDBDBD;
-
     --accent:#3B82F6;
-
     --border:rgba(255,255,255,.08);
-
+    --border-strong:rgba(255,255,255,.15);
     --container:1280px;
-
+    --nav-bg:rgba(20,20,20,.55);
+    --nav-bg-scrolled:rgba(15,15,15,.75);
+    --mobile-nav-bg:rgba(15,15,15,.97);
+    --card-shadow-hover:0 20px 40px rgba(59,130,246,.12);
+    --btn-shadow:0 18px 35px rgba(59,130,246,.25);
+    --word-glow:
+        0 0 10px rgba(59,130,246,.5),
+        0 0 25px rgba(59,130,246,.35),
+        0 0 50px rgba(59,130,246,.18);
+    --radial-glow:
+        rgba(59,130,246,.22) 0%,
+        rgba(59,130,246,.12) 30%,
+        rgba(59,130,246,.05) 55%,
+        transparent 75%;
+    --flight-stroke:rgba(59,130,246,.28);
+    --flight-glow:drop-shadow(0 0 10px rgba(59,130,246,.35));
+    --lightbox-bg:rgba(0,0,0,.92);
 }
 
 :root[data-theme="light"]{
-    --bg:#F7F7F5;
+    --bg:#F7F6F2;
     --surface:#FFFFFF;
-    --surface-2:#F0F0EF;
-    --text:#111111;
-    --text-light:#555555;
-    --border:rgba(0,0,0,.08);
+    --surface-2:#F1EFE8;
+    --text:#1A1A18;
+    --text-light:#63615A;
+    --accent:#1D5FD1;
+    --border:rgba(20,20,15,.10);
+    --border-strong:rgba(20,20,15,.18);
+    --nav-bg:rgba(255,255,255,.7);
+    --nav-bg-scrolled:rgba(255,255,255,.88);
+    --mobile-nav-bg:rgba(255,255,255,.98);
+    --card-shadow-hover:0 16px 32px rgba(30,30,25,.10);
+    --btn-shadow:0 12px 24px rgba(29,95,209,.18);
+    --word-glow:none;
+    --radial-glow:
+        rgba(29,95,209,.10) 0%,
+        rgba(29,95,209,.05) 30%,
+        transparent 60%;
+    --flight-stroke:rgba(29,95,209,.25);
+    --flight-glow:none;
 }
 
 
@@ -108,7 +131,7 @@ body{
 
 .navbar.nav-scrolled .nav-container{
 
-    background:rgba(15,15,15,.75);
+    background:var(--nav-bg-scrolled);
 
 }
 
@@ -124,11 +147,11 @@ body{
 
     border-radius:22px;
 
-    background:rgba(20,20,20,.55);
+    background:var(--nav-bg);
 
     backdrop-filter:blur(18px);
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--border);
 
     transition:background .3s ease;
 
@@ -266,7 +289,7 @@ nav{
 
     border-radius:999px;
 
-    border:1px solid rgba(255,255,255,.15);
+    border:1px solid var(--border-strong);
 
     transition:.35s;
 
@@ -394,10 +417,7 @@ nav{
 
     background:radial-gradient(
         circle,
-        rgba(59,130,246,.22) 0%,
-        rgba(59,130,246,.12) 30%,
-        rgba(59,130,246,.05) 55%,
-        transparent 75%
+        var(--radial-glow)
     );
 
     filter:blur(90px);
@@ -509,10 +529,7 @@ nav{
 
     transform:translateX(12px);
 
-    text-shadow:
-        0 0 10px rgba(59,130,246,.5),
-        0 0 25px rgba(59,130,246,.35),
-        0 0 50px rgba(59,130,246,.18);
+    text-shadow:var(--word-glow);
 
 }
 
@@ -541,15 +558,13 @@ nav{
 }
 
 .secondary-btn{
-
     text-decoration:none;
-
     padding:16px 34px;
-
     border-radius:999px;
-
     transition:.3s;
-
+    background:none;
+    font:inherit;
+    cursor:pointer;
 }
 
 .primary-btn{
@@ -580,7 +595,7 @@ nav{
 
 .secondary-btn{
 
-    border:1px solid rgba(255,255,255,.15);
+    border:1px solid var(--border-strong);
 
     color:var(--text);
 
@@ -626,7 +641,7 @@ nav{
 
     fill:none;
 
-    stroke:rgba(59,130,246,.28);
+   	stroke:var(--flight-stroke);
 
     stroke-width:4;
 
@@ -634,7 +649,7 @@ nav{
 
     stroke-dasharray:12 14;
 
-    filter:drop-shadow(0 0 10px rgba(59,130,246,.35));
+    filter:var(--flight-glow);
 
 }
 
@@ -795,7 +810,7 @@ nav{
 
     border-color:var(--accent);
 
-    box-shadow:0 20px 40px rgba(59,130,246,.12);
+    box-shadow:var(--card-shadow-hover);
 
 }
 
@@ -959,7 +974,7 @@ nav{
 
     border-color:var(--accent);
 
-    box-shadow:0 20px 40px rgba(59,130,246,.12);
+    box-shadow:var(--card-shadow-hover);
 
 }
 
@@ -1160,7 +1175,7 @@ nav{
 .divider{
     width:100%;
     height:1px;
-    background:rgba(255,255,255,.08);
+    background:var(--border);
     margin:100px 0 70px;
 }
 
@@ -1511,11 +1526,7 @@ nav{
 
         circle,
 
-        rgba(59,130,246,.22) 0%,
-
-        rgba(59,130,246,.12) 35%,
-
-        transparent 70%
+        var(--radial-glow)
 
     );
 
@@ -1541,7 +1552,7 @@ nav{
 
 .site-footer{
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:1px solid var(--border);
 
     padding:48px 0;
 
@@ -1644,7 +1655,7 @@ nav{
 .lightbox{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.92);
+    background:var(--lightbox-bg);
     display:none;
     align-items:center;
     justify-content:center;
@@ -1681,3 +1692,61 @@ nav{
     margin-top:40px;
     display:inline-block;
 }
+
+.gallery-extra{
+    display:none;
+}
+.gallery-extra.show{
+    display:block;
+}
+.gallery-more-btn{
+    display:block;
+    margin:50px auto 0;
+    cursor:pointer;
+}
+
+.detail-modal{
+    position:fixed;
+    inset:0;
+    background:var(--lightbox-bg);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    padding:24px;
+}
+.detail-modal.active{ display:flex; }
+.detail-modal-box{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:40px;
+    max-width:420px;
+    width:100%;
+    text-align:center;
+    position:relative;
+    max-height:85vh;
+    overflow-y:auto;
+}
+.detail-modal-close{
+    position:absolute; top:16px; right:20px;
+    cursor:pointer; font-size:1.8rem; color:var(--text-light); line-height:1;
+}
+.detail-modal-img{
+    width:120px; height:120px; border-radius:50%;
+    object-fit:cover; margin:0 auto 20px; display:block;
+}
+.detail-modal-img[src=""]{ display:none; }
+.detail-modal-box h3{
+    font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:1px; color:var(--text);
+}
+.detail-modal-subtitle{
+    color:var(--accent); font-size:.85rem; letter-spacing:2px;
+    margin-top:6px; text-transform:uppercase;
+}
+.detail-modal-body{ color:var(--text-light); margin-top:16px; line-height:1.6; }
+#detailModalMoreBtn{ margin-top:24px; cursor:pointer; }
+.detail-modal-more{ display:none; margin-top:16px; color:var(--text-light); line-height:1.6; text-align:left; }
+.detail-modal-more.show{ display:block; }
+.secretary-card, .season-card li{ cursor:pointer; transition:.3s; }
+.secretary-card:hover, .season-card li:hover{ color:var(--accent); }
