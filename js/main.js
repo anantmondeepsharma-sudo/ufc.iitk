@@ -288,3 +288,24 @@ document.querySelectorAll(".season-card li").forEach(item => {
         openDetailModal({ img: "", title, subtitle: date, body: desc, more });
     });
 });
+
+const joinForm = document.querySelector(".join-form");
+
+if (joinForm) {
+
+    joinForm.addEventListener("submit", (e) => {
+
+        const emailInput = joinForm.querySelector('input[type="email"]');
+        const email = emailInput.value.trim().toLowerCase();
+
+        if (!email.endsWith("@iitk.ac.in")) {
+            e.preventDefault();
+            emailInput.setCustomValidity("Please use your IITK email (must end in @iitk.ac.in)");
+            emailInput.reportValidity();
+        } else {
+            emailInput.setCustomValidity("");
+        }
+
+    });
+
+}
