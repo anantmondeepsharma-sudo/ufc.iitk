@@ -1156,8 +1156,12 @@
                                                 <label>IITK Email</label>
 
                                                 <input
-                                                    type="email" name="email"
+                                                    type="email"
+                                                    name="email"
                                                     placeholder="your.name@iitk.ac.in"
+                                                    pattern="[a-zA-Z0-9._%+-]+@iitk\.ac\.in"
+                                                    title="Please use your IITK email (must end in @iitk.ac.in)"
+                                                    required
                                                 >
 
                                             </div>
@@ -1168,7 +1172,7 @@
 
                                                     <label>Year</label>
 
-                                                    <select>
+                                                    <select name="year">
 
                                                         <option>First Year</option>
                                                         <option>Second Year</option>
@@ -1185,7 +1189,7 @@
 
                                                     <label>Have you played before?</label>
 
-                                                    <select>
+                                                    <select name="experience">
 
                                                         <option>Never Played</option>
                                                         <option>Played Casually</option>
